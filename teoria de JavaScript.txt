@@ -1,0 +1,226 @@
+JavaScrip es la unica tecnologia ISOMORFICA 
+Esto quiere decir que puedes hacer una pagina de principio a fin con JavaScrip
+En FrontEnd (JavaScrip y sus frameword)
+En Backend (Node.js)
+En base de datos no sql se puede usar mongo db, couch db, firesbase
+/////////////////////////////////////////
+Para las notaciones de las variables o nombre de los archivos hay ciertas reglas se son recomendadas 
+para el nombre de los archivos es mejor si se escribe usando snake_case
+Para las constantes de UPEER_CASE
+Para las clases es mejro el UpperCamelCase
+En caso de utilizar objetos o funciones usar la notacion lowerCamelCase
+/////////////////////////////////////////
+Tipos de Datos Primitivos 
+son a los que accedes directamente al valor como ser 
+String, number, boolean, null, undefined, notacion
+Tipos de datos Compuestos 
+son a los que se accede a la referencia del valor como ser 
+Object={}, array=[], funcion(){}, class{}
+/////////////////////////////////////////
+Const en js si se usa en datos primitivos no podras modificar su contenido 
+en cambio si lo utilizas en tipos de datos compuestos si los puedes realizar 
+/////////////////////////////////////////
+TEMPLETES DE STRINGS
+CONCATENACION Y INTERPOLACION
+Concatenacion es la union de dos cadenas, estos pueden estas en dos o mas variables 
+o simplemente una cadena de texto con una variable utilizando el signo (+)
+INTERPOLACION esto es añandir una variable dentro de las cadenas, esto se hace utilizando TEMPLETES
+para los templetes se unician las cadenas con la comilla (´´)
+ejemplo 
+let nombre = "Alex"
+let saludo = ´Hola mi nombre es ${nombre}´
+las templetes tambien se pueden utilizar para agregar codigo html dentro de un script
+ejemplo
+lista= ´<ul>
+            <lidato1></li>
+            <li>dato2</li>
+            <li>dato3</li>
+        </ul>´
+/////////////////////////////////////////
+DIFERENCIAS ENTRE undefined, null, NaN
+undefined inidican que no hay numero pero la diferencias con null es que 
+undefined no fue inicializada y null es como para indicar intencionalmente que la variable
+ no tiene valor
+y NaN quiere decir que la baraiable que estas intentando utilizar en una operacion aritmentica no es un numero 
+/////////////////////////////////////////
+Funciones en JavaScript
+las funciones son bloques de codigo que realizan acciones y pueden 
+devolver algun valor como tambien no pueden devolver nada 
+estas funciones tambien pueden ser utilizadas para ejecutar otras funciones 
+Maneras de Declara una funcion
+Funciones declaras 
+Las funcioenes declaradas pueden ser invocadas en cualquier parte del documento incluso antes de que la fucnion sea declarada
+function funcionDeclarada(parametro){
+    acciones que seran realizados al llamar a la funcion
+}
+///
+Funciones Expresadas 
+esta funcion no puede ser utilizado antes de ser declarada 
+las funciones expresadas son las que se son asignadas a una variable 
+estas tambien son conosidas como funciones anonimas
+const NombreDeLafuncion = function(parametro){
+    acciones a realizar 
+}
+/////////////////////////////////////////
+Arreglos o Array en js
+Estos arreglos son una coleccion de datos que pueden ser tranquilamente de tipos diferentes 
+los arreglos son preferibles declarar como const
+la declaracion es simple de nombreDelArreglo = []
+/////////////////////////////////////////
+Objetos 
+este tipo de datos tambien es recomendado declararlo como conts
+los valores dentro de los objetos pueden ser objetos o funciones o array 
+los objetos en js son colecciones de datosa que cuentan con una llave y un valor
+la declaracion es simple de nombreDelObjeto = {}
+ejemplo 
+const alex = {
+    llave:valor
+    nombre: "alex",
+    apellido: "rive"
+    // las funciones dento de los objetos son conocidas como metodos
+    saludar:function(){
+        console.log(hola)
+    }
+    decirMiNombre= function(){
+        //this es una palabra reservada utilizada para apuntar al mismo objeto en ves de poner alex.nombre por ejemplo 
+        console.log(´mi nombre es ${this.nombre}´)
+    }
+}
+para acceder al valor de los objetos se puede hacer a traves de los corchetes como si fuerar arrays pero lo mejor es a traves del punto 
+ejemplo 
+alex.nombre
+/////////////////////////////////////////
+Tipos de Operadores  
+Relacionales que peuden ser 
+mayor que >
+menor que <
+mayor igual >=
+menor igual <=
+igual ==
+igual igual === este es utilizado para saber si hasta el yipo de datos son iguales 
+diferente != 
+rediferente !== este es utilizado para saber si son diferentes hasta el tipo de datos 
+Operadore Logicos 
+!not 
+|| or 
+&& and 
+Operadores Aritmeticos 
+- menos 
++ mas 
+* multiplicasion 
+/ division 
+** potenica 
+% modulo, etc.
+/////////////////////////////////////////
+CONDICIONALES
+Para realizar las condiciones es utilizada el if
+ejemplo 
+if(condicion){
+    Si la condicion se cumple se ejecuta lo que hay acá 
+}ele{
+    y en caso que la condicion no se cumpla se ejecuta esto
+}
+tambien podemos utilizar un swicht-case
+ejemplo 
+0= domingo 
+1=lunes 
+. . .
+swicht(clave){
+    case valor: accion 
+    case 0:
+        domingo
+        // esto detien la ejecusion del swicht cuando se encuentra una coinsidencia 
+        break;
+    case 1:
+        lunes 
+        break;
+    default:
+    // esto se ejecuta en caso no se encuentre nincuan coinsidencia con la clave buscada
+        break
+}
+/////////////////////////////////////////
+Loops en js
+el primero que podemso ver es el while(mientras)
+este bucle se va a ejecutar solo si es que la condicion se cumple 
+por ejemplo 
+i=0
+while (i<=10){
+    console.log(i)
+    i++
+}
+luego podemos ver el do while 
+en el do while podemos dar por hecho que el bloque por lo menos sera ejecutada 1 vez y una 
+vez se evalue la condicion se realiza otra iteracion o no 
+do{
+    console.log(i)
+    i++
+}while(i<=10)
+Otro loop que podemos utilizar es el for 
+en este caso estamos recorriendo un arrahy hasta que i sea igual a la longitud del array recorrinedo esta de 1 en 1
+for (i=0; i <=array.length;i++){
+    elemento = array[i|]
+}
+Pero claro hay una mejor manera de hacer esto que es el por For of
+for (const elemento of array){
+    console.log(elemento)
+}
+
+El for in es la mejor opcion para recorrer objetos 
+for (const key in objeto){
+    console.log(´Key ${key} valor${objeto[key]}´)
+}
+/////////////////////////////////////////
+Manejor de Errores try catch
+try{
+    // estos es lo que sera evaluado 
+}catch(error){
+    En este caso se captura e imprime el error que ha ocurrido en la ejecusion del try
+}finally{
+    Este bloque se ejecutara siempre al final del try-catch
+}
+para realizar notificaciones personalidas se utiliza la palabra "(throw)"
+ejemplo 
+throw new Error("mensaje de error")
+/////////////////////////////////////////
+Destructuracion 
+const numeros = [1,2,3,4,5]
+// esto la linea lo que hace es que vamos a signando un nombre a todos los valores del array como si fuera por el indice 
+const [uno, dos, tres, cuatro, cinco]=numeros
+ lo mismo se puede hacer con los objetos pero en ese caso se debe utilizar las {} en ves de los [] para que estos fucione la 
+ nueva variable tiene que ser igual a como esta descripto la propiedad, de esta manera no importa el orden a la hora de asignar a Las
+ variables independientes
+/////////////////////////////////////////
+Obejtos literales 
+Esto lo que hace es agilizar la escritura 
+ejemplo 
+let nombre="rufo"
+let edad=7
+const perro{
+    nombre,
+    edad,
+    raza="pitbull"
+    //a la hora de escribir los metos ya no es necesario poner nombre luego dos puntos y la palabra funcion, todo esto se abrevia de la siguiente manera
+    ladrar(){
+        console.log("guauu gauuuu")
+    }
+}
+/////////////////////////////////////////
+PARAMETROS REST Y OPERADOR SPREAD
+Rest son una forma de ir apregando parametros infinitos a una funcion o variable eso se hace poniendo ...antes del nombreDelArreglo
+ejemplo 
+function sumar (a, b, ...c){
+    let resultado = a+b;
+    //en este caso todos los datos que lleguen despues de a y b sera como un array 
+    es por eso que lo recorremos con un forEach y realizamos la suma de cada elemento con una funcion 
+    c.forEach(funcion(n){
+        resultado +=n
+    });
+    return resultado;
+}
+OPERADOR SPREAD
+esto se utilisa para mezclar dos array en este caso los ...tienen que estan antes de ambas variables 
+ejemplo 
+const arr1 = [1,2,3]
+const arr2 = [6,5,4]
+conts arr3 = [...arr1, ...arr2]
+/////////////////////////////////////////
