@@ -224,3 +224,178 @@ const arr1 = [1,2,3]
 const arr2 = [6,5,4]
 conts arr3 = [...arr1, ...arr2]
 /////////////////////////////////////////
+ARROWN FUNCTION O FUNCIONES DE TIPO FLECHA 
+Estas funciones es una nueva forma de definir una funcion anonima expresada 
+Ejemplo
+Esta es una forma de declarlas 
+const saludo=(parametro)=>{
+    console.log("hola")
+}
+Y otra manera mas expresiva y simple es la siguiente 
+const despedir= parametro => console.log("chau")
+En caso que se tenga que tener un valor de retorno de la funcion en las arrown function tampoco es necesario la palabra return 
+POR EJEMPLO 
+const sumas = (a,b) => a+b;
+Estas funciones tambien son muy utilizadas con el ForEach de la siguiente manera 
+const arr = [1,2,3,4,5]
+arr.forEach((elemento, index)=>console.log(´${elemento} esta en la posicion ${index}´));
+/////////////////////////////////////////
+PROTOTIPOS => POO
+en la programacion Orientada a objetos hay 4 muy imoprtantes que se debe de conocer 
+Clases  modo a seguir 
+Objetos esta una instancia de una clase 
+    Atributos es una caracteristica o propiedad del objetos (son variables dentro del objetos)
+    Metodos son las acciones que pude realizar un objetos estos son funciones dentro del objetos
+Ejemplo de un constructor 
+para hacer un constructor los atributos como los metodos deben llevar el prefijo this
+function Animal(nombre, genero){
+    this.nombre = nombre
+    this.genero = genero
+
+    this.sonar= function (){
+        console.log("hacer algun ruido")
+    }
+}
+Con la palabra reservada new estamos creando una nueva instancia de un objeto de tipo animal
+const pupi = new Animal("pupi", "macho")
+
+Tambien se puede agregar metodos al objeto de la siguiente manera 
+Animal.prototype.saludar = function(){
+    console.log(´Hola me llamo ${this.nombre}´)
+}
+Animal.prototype.sonar = function(){
+    console.log(´Hago ruido por que estoy vivo´)
+}
+/////////////////////////////////////////
+Herencia Prototipica
+Esta es la capacidad de definir nuevas clases a partir de una ya definida a modo de reutilizar codigo, generando jerarquia de clases dentro de la aplicacion 
+Crearemos una funcion constructora de tipo Perro que va a heredar los atributos y metodos de la funcion Animal
+function Perro (nombre, genero, tamanio){
+    this.super = Animal
+    this.super(nombre, genero)
+    this.tamanio = tamanio
+}
+
+Asisgnamos que el prototipo Perro es igual a un nuevo animal 
+Perro.prototype = new Animal()
+Perro.prototype.constructor=Perro
+
+Vamos a sobreescribir un metodo del ojeto padre de la siguiente manera 
+Perro.prototype.sonar= function (){
+    console.log("El ruido que hago es un ladrido porque soy un perro ")
+}
+Agregamos un nuevo metodo al objeto perro 
+Perro.prototype.ladrar=function(){
+    console.log("Guauuu Guauuuuu")
+}
+const rufo = new Perro("rufo", "macho","gigante")
+/////////////////////////////////////////
+/////////////////////////////////////////
+CLASES Y HERNECIAS POO 
+Es basicamente lo mismo que el prototipo 
+
+class Animal{
+    constructor(nombre, genero){    
+        this.nombre = nombre
+        this.genero = genero
+    }
+
+    sonar(){
+        console.log("hacer algun ruido")
+    }
+}
+
+HERNECIA
+class Perro ectends Animal{
+    constructor(nombre, genero, tamanio){
+        // con el metodo super() se manda llamar al constructor de la clase padre
+        super(nombre, genero)
+        this.tamanio=tamanio
+    }
+    ladrar(){
+        console.log("Guauuu Guauuu")
+    }
+}
+/////////////////////////////////////////
+/////////////////////////////////////////
+Metodos Getter y Setter 
+Estodos metodos son para obtner los datos de un campo en el 
+caso de los getters y los settes son para volver a setear el valor de los campos 
+class Animal{
+    constructor(nombre, genero){    
+        this.nombre = nombre
+        this.genero = genero
+        this.raza = null
+    }
+    get getRaza(){
+        return this.raza
+    }
+    set setRaza(raza){
+        this.raza=raza
+    }
+    sonar(){
+        console.log("hacer algun ruido")
+    }
+}  
+/////////////////////////////////////////
+Moments.js es una libreria muy util para el manejo de horas en caso que sea necesaior para no hacerlo de manera nativa
+/////////////////////////////////////////
+ALERT, CONFIRMM, PROMPT
+/////////////////////////////////////////
+para ejecutar estas funciones no es necesario la palabra "window."
+window.alert("esto es un aviso en una ventana emerjente")
+window.comfirm("esto pide que confirmes algo con dos botones de si o no")
+window.promp("esto es un imput en forma de ventana emergente ")
+/////////////////////////////////////////
+Expreciones Regulares 
+Las expresiones regulares son patrones que se utilizan para 
+hacer coincidir combinaciones de caracteres en cadenas. En 
+JavaScript, las expresiones regulares también son objetos
+para empresar estas se hace de la siguieten manera
+BANDERAS QUE PUEDEN SER UTILIZADAS
+i = ignora mayuscualas y minusculas 
+g= busca en toda la cadena y no se detiene en la primera coinsidencia
+
+###let expresionReg = new RegExp("string a buscar", "banderas de busqueda")
+
+###let expresionReg2 = /string a buscar/banderas;
+
+@@expresionReg.test(cadena en donde buscar la palabra deceada) esto solo devuelve true o false en caso de encontrar o no coinsidencia
+
+@@expresionReg.exec(cadena en donde bsucar la palabra deceada) esto deolvera una array con toda la informacion en caso de encontar coinsidencias 
+/////////////////////////////////////////
+FUNCIONES ANONIMAS AUTOEJECUTABLES
+Para que una fucnion se autoejecute es necesario que esten encerrado entre parentesis y al fianl tambien pondremos 2 
+parentesis para el parametro en caso que sea necesario 
+EJEMPLOS
+ FUNCION FLECHA AUTOEJECUTABLES
+ ((nombre) => {
+    document.write("Hola  "+nombre);
+})("María");
+ FUCNION ANONIMA NORMAL Y CON PARAMETROS
+ (function(nombre){ 
+    document.write("Hola "+nombre);
+})("María");
+/////////////////////////////////////////
+setTimeout y setInterval
+/////////////////////////////////////////
+setTimeOut 
+es una funcion de pausa que se utiliza una sola vez
+con este expresion le decimos al programa cuanto debe esperar para ejecutae la siguiente linea de codigo 
+1s == 1000 milliseconds
+como se utiliza
+##myTimeout = setTimeout(function, milliseconds);
+luego de ejecutar esta tambien es necesario usar 
+##clearTimeout(myTimeout);
+setInterval
+es una fucnion que se ire realizando cada cierto tiempo de manera indefinida y se hace la siguiente manera 
+myInterval = setInterval(function, milliseconds);
+para parar esta ejecucion infinita es utilizada la funcion 
+clearInterval(myInterval);
+/////////////////////////////////////////
+Asincronia y Eventos Loop 
+/////////////////////////////////////////
+
+/////////////////////////////////////////
+
+
