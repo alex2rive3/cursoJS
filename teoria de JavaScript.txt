@@ -648,3 +648,87 @@ yield es como un return que le indica a la funcion
 
 estos es utilizado generalmente para que una funcion nos retorne mas de un valor 
 /////////////////////////////////////////
+PROXIES
+/////////////////////////////////////////
+ES UN NUEVO MECANIMOS DE JS QUE PERMITE CREAR OBJETOS DESDE OBJETOS LITERALES Y PERMITE QUE REALICES SIERTOS FUNCIONES.
+
+este es nuestro objeto literal en el cual vamos a vasarnos 
+const persona = {
+  nombre:"",
+  apellido:"",
+  edad:0
+}
+
+creamos un menejador 
+const manejador ={
+  // esto recibe como parametro el objeto, las propiedades que queremos evaluar y el valor que van a recibir las propiuedas 
+  set(obj,prop,val){
+    //acá podemos hacer validaciones para que no sufran cambios nuestro objeto literal
+    if(Object.keys(obj).indexOf(prop)===-1){
+      //esto susede en que no existe la propiedad en el objeto original
+      return console.error(´la propiedad ${prop} no existe en el objeto´)
+    }else{
+      obj[prop]=val;
+    }    
+  }
+}
+
+para comvertir nuestro objeto literal a un proxi se hace de la siguiente manera 
+
+const alex = new Proxy(persona, manejador)
+
+alex.nombre = "alex"
+alex.apellido = "Rive"
+alex.edad=21
+/////////////////////////////////////////
+PROPIEDADES DINAMICAS DE LOS OBJETOS 
+/////////////////////////////////////////
+Esto es para generar de manera dinamica los nombre de los objetos 
+
+cons usuarios = ["alex", "roaldno","miguel","clara"]
+const objdinamico={}
+
+para crear de manera dinamica utilizando interpolacion se hace de la siguiente manera 
+usuarios.forEach((usuario, index) => objdinamico[´id_${index}´]= usuario)
+
+la nueva manera de crear el objeto dinamico es la siguiente menera 
+objdinamico = {
+   [´id_{Math.round(Math.random()*100+5)}´]:"valor aleatorio"
+}
+/////////////////////////////////////////
+JSON----JavaScript Object Notation
+/////////////////////////////////////////
+es un formato basado en texto estándar para representar datos estructurados en la sintaxis de objetos de JavaScript.
+Los JSON son cadenas - útiles cuando se quiere transmitir datos a través de una red. Debe ser convertido a un objeto 
+nativo de JavaScript cuando se requiera acceder a sus datos. Ésto no es un problema, dado que JavaScript posee un objeto 
+global JSON que tiene los métodos disponibles para convertir entre ellos.
+
+Para le creacion las JSON es estrictamente necesario utilizar comillas dobles para las propiedades al igual que todos los valores 
+Esta el estandar de notaciond de como se definen los JSON 
+{
+  "cadena": "Jon",
+  "numero": 35,
+  "booleano": true,
+  "arreglo": ["correr", "programar", "cocinar"],
+  "objeto": {
+    "twitter": "@jonmircha",
+    "email": "jonmircha@gmail.com"
+  },
+  "nulo": null
+}
+
+Funcion "parse" para Json 
+esto es para comvertir un json a un objeto de Javascrip para su manejo
+JSON.parse("algun dato ")
+
+Funcion "stringify" es para pasar pasar un objeto calido de js a json (esto basicamente combierte cualquier cosa a cadena de texto)
+JSON.stringify(algun dato )
+
+/////////////////////////////////////////
+WEB API
+/////////////////////////////////////////
+
+
+
+
+/////////////////////////////////////////
