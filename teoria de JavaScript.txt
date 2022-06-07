@@ -395,7 +395,256 @@ clearInterval(myInterval);
 /////////////////////////////////////////
 Asincronia y Eventos Loop 
 /////////////////////////////////////////
+Codigos Sincrono Bloqueante 
+(()=>{
+    console.log("codigo Sincrono")
+    console.log("inicio")
 
+    function dos(){
+        console.log("dos")
+    }
+    function uno(){
+        console.log("uno")
+        dos()
+        cosnole.log("tres")
+    }
+    uno()
+    console.log("fin")
+})()
+Codigos Asincrono No Bloqueante 
+(()=>{
+    console.log("codigo Asincrono")
+    console.log("inicio")
+
+    function dos(){
+        setTimeout(function (){
+            console.log("dos")
+        },1000)
+    }
+    function uno(){
+        setTimeout(function (){
+            console.log("uno")
+        },0)
+        dos()
+        cosnole.log("tres")
+    }
+    uno()
+    console.log("fin")
+})()
+/////////////////////////////////////////
+callback o llamadas de vuelta 
 /////////////////////////////////////////
 
+    /* function cuadradoCallback(value, callback) {
+      setTimeout(() => {
+        callback(value, value * value);
+      }, 0 | Math.random() * 1000);
+    }
+    cuadradoCallback(0, (value, result) => {
+      console.log("Inicia Callback");
+      console.log(`Callback: ${value}, ${result}`);
+      cuadradoCallback(1, (value, result) => {
+        console.log(`Callback: ${value}, ${result}`);
+        cuadradoCallback(2, (value, result) => {
+          console.log(`Callback: ${value}, ${result}`);
+          cuadradoCallback(3, (value, result) => {
+            console.log(`Callback: ${value}, ${result}`);
+            cuadradoCallback(4, (value, result) => {
+              console.log(`Callback: ${value}, ${result}`);
+              cuadradoCallback(5, (value, result) => {
+                console.log(`Callback: ${value}, ${result}`);
+                console.log("Fin Callback");
+                console.log("Callback Hell !!!!!😈🤘");
+                console.log("http://callbackhell.com/");
+              });
+            });
+          });
+        });
+      });
+    }); */
+/////////////////////////////////////////
+Promesas 
+Esto deve ser considerado como if else y es utilizado para el control de eerores 
+ a la hora de consumir datos de una api
+ /*     function cuadradoPromise(value) {
+          if (typeof value !== "number") {
+            return Promise.reject(`Error, el valor " ${value} " ingresado no es un número`);
+          }
+          //resolve deolvera la parte verdadera de una peticion o la ejecucion de una funcion 
+          // y reject lo que es false en case de algun error o que algo no vaya bien 
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve({
+                value,
+                result: value * value
+              });
+            }, 0 | Math.random() * 1000);
+          });
+        }
+        cuadradoPromise(0)
+          //then es el siguiente bloque a ser ejecutado 
+          // puede ser utilizado tantas veces que se quiera 
+          .then(obj => {
+            //console.log(obj);
+            console.log('Inicio Promise');
+            console.log(`Promise: ${obj.value}, ${obj.result}`);
+            return cuadradoPromise(1);
+          })
+          .then(obj => {
+            console.log(`Promise: ${obj.value}, ${obj.result}`);
+            return cuadradoPromise(2);
+          })
+          .then(obj => {
+            console.log(`Promise: ${obj.value}, ${obj.result}`);
+            return cuadradoPromise(3);
+          })
+          .then(obj => {
+            console.log(`Promise: ${obj.value}, ${obj.result}`);
+            return cuadradoPromise("4");
+          })
+          .then(obj => {
+            console.log(`Promise: ${obj.value}, ${obj.result}`);
+            return cuadradoPromise(5);
+          })
+          .then(obj => {
+            console.log(`Promise: ${obj.value}, ${obj.result}`);
+            console.log('Fin Promise');
+          })
+          // catch es el que obtiene el error ocurrido y los muesta
+          .catch(err => console.error(err)); */
 
+/////////////////////////////////////////
+ASYNC-AWAIT
+/////////////////////////////////////////
+las funciones asincronas son las que esperan a que se cumpla una sentencia para que se siga ejecutando un bloque 
+Las funciones asincronas trabajan en conjunto con las promesas 
+ /* function cuadradoPromise(value) {
+      if (typeof value !== "number") {
+        return Promise.reject(`Error, el valor " ${value} " ingresado no es un número`);
+      }
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({
+            value,
+            result: value * value
+          });
+        }, 0 | Math.random() * 1000);
+      });
+    }
+    async function funcionAsincronaDeclarada() {
+      try {
+          // await es para esperar a tener el resultado de una ejecucion hasta seguir con la siguiente linea 
+        console.log('Inicio Async Function');
+        let obj = await cuadradoPromise(0);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(1);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(2);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise("3");
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(4);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(5);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        console.log('Fin Async Function');
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    funcionAsincronaDeclarada();
+    const funcionAsincronaExpresada = async () => {
+      try {
+        console.log('Inicio Async Function');
+        let obj = await cuadradoPromise(6);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(7);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(8);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise("9");
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        obj = await cuadradoPromise(10);
+        console.log(`Async Function: ${obj.value}, ${obj.result}`);
+        console.log('Fin Async Function');
+      } catch (err) {
+        console.error(err)
+      }
+    }
+funcionAsincronaExpresada()
+/////////////////////////////////////////
+Symbols
+/////////////////////////////////////////
+Nuevos tipos de datos que hay en js
+estos permiten declarar identificadores unicos tambein conocidos como identificadores de referencia 
+const ID = Symbol("descripcion o nombre");
+
+const NOMBRE = Symbol("descripcion")
+const persona ={
+    //para utilizar el Symbol es necesario utilizar la notacion de los corchetes 
+    [NOMBRE]:"alex" //estos es un identificador unico para el objeto
+    //esta no se cambia si se le asigna un nuevo valor a la propiedad 
+}
+/////////////////////////////////////////
+Tipo de Datos SET
+/////////////////////////////////////////
+Es un tipo de dato nuevo que es como un arry mejorado que no permite datos primitivos duplicados 
+Y se crea de la siguiente manera
+Ejemplo 
+const arrSet = new Set([datos] o una variable)
+ en este caso  para saber la longitud de un set se utiliza la palabra ".size"
+ para agregar datos se utiliza add 
+ Ejemplo 
+arrSet.add(datos o variables o lo que sea necesario)
+para comvertir un Set A un Array se hace de la siguiente manera 
+
+let arr = Array.from(arrSet)
+
+Tambien se puede ver si es que existe un valor dentro del Set con la siguiente funcion 
+arrSet.has("algo") // si es que se encuentra el valor buscado esto retorna true
+
+Con la funcion arrSet.clear() se elimina todo el contenido del arraySet
+/////////////////////////////////////////
+MAPS
+/////////////////////////////////////////
+estos son objetos que se utilizan para almacenar datos relacionados es casi igual a un objeto primitivo
+
+let mapa = new Map();
+
+para agregar datos a este objetos se hace de la siguiente manera 
+
+mapa.set("key", "valor")
+
+para eliminar los valore de un mapa se utiliza lo siguiente 
+
+mapa.delete("key")
+
+/////////////////////////////////////////
+Iterables E Iteradores
+/////////////////////////////////////////
+Iterables son los cuales se pueden recorrer por ejemplo, array, string, objetos, etc
+y los iteradore son como el puntero que va a recorriento y apuntando a un valor
+
+const iterable = [1,2,3,4,5,6]
+//Accedemos al iterador del iterable 
+const iterador = iterable[Symbol.iterator]()
+
+Esto es para imprimir un valor por vez 
+console.log(iterador.next())
+let next = iterador.next()
+mientra el valor Done de next sea false va a ejecuar el while 
+while(!next.done){
+    console.log(next.value)
+    next = iterador.next()
+}
+
+/////////////////////////////////////////
+Generadores
+/////////////////////////////////////////
+Estas son funciones que no permite trabajar mas comodamente con los iteradores 
+
+Para indicar a Js que una funcion es un generator se hace lo siguiente (functio*)
+yield es como un return que le indica a la funcion 
+
+estos es utilizado generalmente para que una funcion nos retorne mas de un valor 
+/////////////////////////////////////////
