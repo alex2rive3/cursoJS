@@ -725,9 +725,13 @@ Funcion "stringify" es para pasar pasar un objeto calido de js a json (esto basi
 JSON.stringify(algun dato )
 
 /////////////////////////////////////////
-WEB API
+WEB API (interfaz de progra de aplicacion)
 /////////////////////////////////////////
+DOM(Document Object Model) es una API que se utiliza para la programacion de sistios web para poder interactuar con el navegador 
 
+Dom es la manipulacion de codigo html a traves de js 
+CSSOM(CSS Object Model) es la manipulacion de codigo css a traves de js 
+Bom(Browser Object Model) esta no es una API estandar porque cada navegador tiene diferentes formas de manejar algunas cosas 
 
 
 

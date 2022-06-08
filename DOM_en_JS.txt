@@ -1,0 +1,232 @@
+/////////////////////////////////////////////////////////////
+document.etiqueta a acceder
+/////////////////////////////////////////////////////////////
+de esta manera tambien podemos acceder al contenido de algunas cosas como por ejemplo el body, title, images, links entre otras 
+
+/////////////////////////////////////////////////////////////
+Document.documentElement()
+/////////////////////////////////////////////////////////////
+Este es un selector de etiqueta html
+
+/////////////////////////////////////////////////////////////
+document.getSelection()
+/////////////////////////////////////////////////////////////
+esta funcion es utilizada para seleccionar el texto de una pagina 
+
+/////////////////////////////////////////////////////////////
+document.write()
+/////////////////////////////////////////////////////////////
+esto es para escribir en el documento html pero lo que escribe se posiciona al final del documento 
+
+/////////////////////////////////////////////////////////////
+Nodos, Elementos y Selectores 
+/////////////////////////////////////////////////////////////
+Nodo = Un nodo en el DOM es cualquier etiqueta del cuerpo, como un párrafo, el mismo body o 
+incluso las etiquetas de una lista. Con Javascript podemos modificar estas etiquetas con el uso de eventos.
+/////////////////////////////////////////////////////////////
+SELECTORES 
+Estos selectores pueden ser los siguiente 
+##document.getElementsByTagName("tag html")
+con esto se selecciona todos los elemetos con la etiqueta deceada 
+
+##document.getElementsByClassName("nombre de la clase")
+esto devolvera una lista completa de todos los elementos que tengan la clase que buscas
+
+##document.getElementsByName("nombre del imput")
+con estos seleccionamod un elemento por su nombre, esto ya es para seleccionar elementos espesificos porque muy dificilmente tendras dos elementos con el mismo nombre 
+
+##document.getElementsById("nombre de id")
+esto es para seleccionar un solo elemento del documento devido a que el id es un identificador unico 
+
+##document.querySelector("cualquier selector valido")
+El query selector solo devuele el primer elemento que encuentra pero se puede buscar de la menera que a uno mejor
+ le parezca, en caso que vayas a buscar un id le debes de indicar de la siguiente manera ("#nombre del id")
+
+##document.querySelectorAll("cualquier selector valido")
+es para que retorne todos los elementos que coinsidan con la busqueda, puede ser tag, name, class, entre otros
+Al utilizar el document.querySelectorAll() tambien se le puede aplicar una funcion como puede ser el forEach o cualqueir otro valido
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+Es una buena practica declarar las variables que obtienen datos del dom con el signo del dolar delante ($variable) para 
+de este modo diferenciar en un documento cuales son variables logicos y cuales estan obteniendo datos del dom para modificarlas o eliminarlas 
+/////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////
+ATRIBUTOS Y DATA-ATRIBUTOS
+/////////////////////////////////////////////////////////////
+##document.documentElement.setAtribute("atributo a seleccionar")
+esto es para averiguar el valor que contiene un atributo 
+
+##document.documentElement.setAtribute("atributo a seleccionar","nuevo valor")
+esto es para cambiar el valor del atributo en cuestion 
+
+###########################################
+data-attribute
+############################################
+Los atributos data-* permiten almacenar información adicional sobre un elemento HTML cualquiera sin tener que recurrir a artilugios tales como la utilización de atributos no estándar, propiedades adicionales en el DOM o Node
+
+/////////////////////////////////////////////////////////////
+Estilos y Variables CSS
+/////////////////////////////////////////////////////////////
+##getComputedStyle(elemento del DOM)
+esto devuelve una lista completa de todos los estilos css que se pueden aplicar al elemento
+
+##getComputedStyle(elemento del DOM).getPropertyValue("propiedad css")
+este metodo devolvera el valor de la propiedad que tiene el elemento que estamos buscando 
+
+/////////////////////////////////////////////////////////////
+PARA MODIFICAR EL VALOR DE UNA PROPIEDAD CSS SE PUEDE HACER DE DOS MANERAS
+##Por notacion de puntos 
+$variableQueContieneElElemento.style.propiedadCss="valor deceado"
+EJEMPLO 
+$linkDom.style.width="50%"
+
+##Y accedienddo a ella de la siguiente manera 
+$variable.style.setAtribute("propiedad css","valor")
+
+/////////////////////////////////////////////////////////////
+CLASES CSS DESDE JS
+/////////////////////////////////////////////////////////////
+Usar "classList" es una forma práctica de acceder a la lista de clases de un elemento como una cadena de texto delimitada
+
+La propiedad devuelve una colección activa de los atributos de clase del elemento.
+
+FUNCIONES QUE PUEDE CUMPLIR 
+##add("clase") agregar las clases indicadas en caso que ya tenga la clase sera ignorada
+
+##remove("clase")eliminara la clase en caso que esta no exista no dara ningun error
+
+##toggle("clase") esta en caso que la clase exista la elimina y retorna flase y en caso que no exista lo añade y retorna true
+
+##contains("clase") esto compruebas si es que la clase indicada existe en el atributo de clase del elemento
+
+##replace("clase vieja","clase nueva")esta funcion reemplaza un funcion por otra 
+
+//////////////////////////////////////////////////////////////
+TEXTO Y HTML
+/////////////////////////////////////////////////////////////
+La mejor forma de agregar un texto que contiene etiquetas html al documento es por medio de la funcion ""innerHTML""
+EJEMPLO 
+$variableDelDiv.innerHTML=texto que se quiere agregar 
+
+/////////////////////////////////////////////////////////////
+RECORRIENDO EL DOM
+/////////////////////////////////////////////////////////////
+const $card = document.querySelector("card")
+estamos seleccioando un elemento por medio de una clase que es card 
+
+$card.children esto retorna todos los elementos hijos del elemento seleccionado 
+
+$card.children[1] esto es utilizado si queremos acceder a un hijo espesificamente 
+
+$card.firstElementChild esto es para saber cual es primer elemeto hijo del elemento seleccionado 
+
+$card.lastElementChild esto es para saber cual el ultimo elemeto hijo del elemento seleccionado
+
+$card.previousElementSibling esto es para saber cual es el elemeto hermano previo del elemento seleccionado
+
+$card.nextElementSibling esto es para saber cual es el elemeto hermano siguiente del elemento seleccionado
+
+$card.parentElement con esto nos dira cual es elemento padre del elemento seleccionado 
+
+/////////////////////////////////////////////////////////////
+CREANDO ELEMENTOS Y FRACMENTOS  
+/////////////////////////////////////////////////////////////
+##document.createElement("tag a crear")
+esta funcion es para crear un nuevo elemento en el documento 
+como podria ser un div nuevo o una foto o cualquier cosas que se te sea necesario 
+
+##document.createTextNode("texto a agregar")
+esto es para crear un nuevo nodo de texto para un elemento
+
+Para agregar los elemento creados es necesario seleccionar el tag despues del cual sera insertado 
+y para insertar se utilza la funcion 
+##$nodoSeleccionado.appendChild($variable que tiene el elemento creado)
+
+/////////////////////////////////////////////////////////////
+TEMPLATES HTML
+/////////////////////////////////////////////////////////////
+Este es un modelo a seguir que tiene en el cual la estructura es el contenido html que quieras generar con js de manera dinamica
+
+En el html lo que hay que agregar es una estructura coomo la siguiente que luego sera completadas por medio de js
+<template id="template-card">
+    <figure class="card">
+      <img>
+      <figcaption></figcaption>
+    </figure>
+  </template>
+
+En js haremos lo siguiente para ir rellenando 
+
+const $cards = document.querySelector(".cards"),
+  $template = document.getElementById("template-card").content,
+  $fragment = document.createDocumentFragment(),
+  cardsContent = [
+    {
+      title: "Tecnología",
+      img: "https://placeimg.com/200/200/tech",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/animals",
+    },
+    {
+      title: "Arquitectura",
+      img: "https://placeimg.com/200/200/arch",
+    },
+    {
+      title: "Gente",
+      img: "https://placeimg.com/200/200/people",
+    },
+    {
+      title: "Naturaleza",
+      img: "https://placeimg.com/200/200/nature",
+    },
+  ];
+cardsContent.forEach((el) => {
+  $template.querySelector("img").setAttribute("src", el.img);
+  $template.querySelector("img").setAttribute("alt", el.title);
+  $template.querySelector("figcaption").textContent = el.title;
+  let $clone = document.importNode($template, true);
+  $fragment.appendChild($clone);
+});
+$cards.appendChild($fragment);
+
+/////////////////////////////////////////////////////////////
+CLONAR ESTRUCTURAS HTML O TEMPLATE HTML 
+/////////////////////////////////////////////////////////////
+Para clona la estuctura o templete html se utiliza la siguinte funcio que es 
+##document.importNode("variable de la estructura o template", true)
+el segundo paramentro siempre debe ser true para que pueda clonar por completo la estructura o template
+
+/////////////////////////////////////////////////////////////
+Modificando elementos COOL STYLE
+/////////////////////////////////////////////////////////////
+.insertAdjacent...
+  .insertAdjacentElement(position, el) esto es para inserta un nuevo elemento 
+  .insertAdjacentHTML(position, html) es para agregar contenido html 
+  .insertAdjacentText(position, text) y por ultimo este es utilizado para areagr texto 
+
+en cuando a la posicion de las funciones anteriores puede tomar los siguientes valores
+Posiciones:
+  beforebegin(hermano anterior)
+  afterbegin(primer hijo)
+  beforeend(ultimo hijo)
+  afterend(hermano siguiente)
+
+const $cards = document.querySelector(".cards"),
+  $newCard = document.createElement("figure");
+let $contenCard = `
+  
+  <img src="https://placeimg.com/200/200/any" alt="Any">
+  <figcaption></figcaption>
+`;
+$newCard.classList.add("card");
+$newCard.insertAdjacentHTML("afterbegin", $contenCard);
+$cards.insertAdjacentElement("beforeend", $newCard);
+$newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Any"); */
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
