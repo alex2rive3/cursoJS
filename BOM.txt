@@ -1,0 +1,34 @@
+//////////////////////////////////////////////////////////
+El BOM es el que apunt al objeto windows 
+//////////////////////////////////////////////////////////
+
+window.innerWidht() esto retorna el ancho que tiene la ventan del navegador 
+window.innerHeight() esto retorna el alto que tiene la ventan del navegador 
+window.outerWidth() esto retorna el ancho del navegador  
+window.outerHeight() esto retorna el alto del navegador 
+
+Este evento solo se ejecuta cuando cambio las dimenciones del navegador 
+window.addEventListener("resize" ,(e)=>{console.log("hola estoy funcionando")})
+
+
+Este es un evento que se detona con el movimiento del scroll 
+window.addEventListener("scroll", (e) => {
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+});
+
+Para saber en que pixeles se emoieza a dibujar la ventaba del navegador 
+
+load es un evento que se ejecuta cuando se termine de cargar la pagina 
+window.addEventListener("load", (e) => {
+  console.log(window.screenX);
+  console.log(window.screenY);
+});
+
+El evento DOMContentLoaded de Firefox y navegadores Mozilla sirve para realizar 
+acciones cuando el DOM ha terminado de cargar y se encuentra listo
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  console.log(window.screenX);
+  console.log(window.screenY);
+});

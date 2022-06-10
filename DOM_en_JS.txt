@@ -229,4 +229,147 @@ $cards.insertAdjacentElement("beforeend", $newCard);
 $newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Any"); */
 
 /////////////////////////////////////////////////////////////
+MANEJADORES DE EVENTOS 
+/////////////////////////////////////////////////////////////
+Hay tres maneras de definir los eventos en JS
+La primera formas es 
+
+Teniendo un evento como propiedad en una etiqueta html por ejemplo
+<button onclick="escribir codigo js a ejecutar o llamar a funcion">Evento atributo html</button>
+
+La segunda forma es con un manejador semantico 
+en html
+<button id= "evento_Semantico">Evento con manejador semantico</button>
+
+en js
+obtenemos el boton y lo guardamos en una variable 
+
+##const function holaMundo(){
+  alert("Hola Mundo");
+}
+
+##const $eventoSemantico = document.getElementById("evento_Semantico")
+##$eventoSemantico.onclick = holaMundo;
+
+cuando vayamos a utilzar funciones con manejadores emantico no se debe usar los parentesis 
+solo se iguala el evendo a la funcion 
+
+los manejadores semantico solo pueden realizar una funcion 
+$eventoSemantico.onclick =function(){
+  alert("Hola mundo desde el manejador semantico");
+}
+Para definir varias funciones a un mismo evento se utilizan los manejadore Multiples 
+Los Manejadores Multiples son los que usan los escuchadores u observers como se le quiera llamar
+
+addEventListener() este es el escuchar u obserever del evento que deceamos realizar 
+Un manejador se declara de la siguiente manera 
+
+este funcion puede recibir varios paramentos pero los mas importantes son dos 
+El tipo de evento(click, change, close, ect)
+
+Y el Otro es la funcion que se va a ejecutares muy importante que esta no tenga los parentesis
+
+$eventoMultiple.addEventListener(click, holaMundo);
+$eventoMultiple.addEventListener(click, (e)=>{
+  alert("Hola mundo manejador multiple")
+});
+
+(e) es el objeto event que contiene todas las informaciones de los eventos 
+e.type retorna cual fue el tipo de evento que se acaba de disparar
+e.target este retornta el elemento que detono la accion 
+
+/////////////////////////////////////////////////////////////
+EVENTOS CON PARAMETRO Y REMOVER EVENTOS 
+/////////////////////////////////////////////////////////////
+function saludar(nombre = "desconocido/a"){
+  alert(´Hola ${nombre}´)
+}
+Para pasar un parametro a alguan funcion que tiene que ser ejecutada con un evento se realiza de la siguiente menera
+
+se realiza una arrown function para que esta sea el manejador y pueda llamar a la funcion que tiene que recibir los parametros 
+y funcione correctamente 
+
+$eventoMultiple.addEventListener(click,() => {saludar("Alex")});
+
+Para remover un evento se realiza de la siguiente manera
+Para eliminar una funcion asociada a un evento esta tiene que estar guardad ya sea en una funcion declarada o expresada
+$eventoMultiple.removeEventListener(dblclick, funcionque tiene esta asociado al evento);
+
+
+/////////////////////////////////////////////////////////////
+FLUJO DE EVENTOS (BURBUJA Y CAPTURA)
+/////////////////////////////////////////////////////////////
+El flujo de eventos 
+Principalmente hay dos manera que podemos trabajar su propagacion 
+
+El Flujo Burbuje es el que se empieza a propagar desde el elemento mas interno hacia el exterior
+
+En este caso vamos a agragar eventos a una lista dinamica
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div");
+
+function flujoEventos(e) {
+  console.log(
+    `Hola te saluda ${this.className}, el click lo originó ${e.target.className}`
+  );
+}
+ Aca estamos recorriendo la lista de div que retorno el querySelector para agregarles el evento de manera automatica y dinamica
+$divsEventos.forEach((div) => {
+  //Fase de burbuja
+  
+  //div.addEventListener("click", flujoEventos);
+  El tercer parametro por default es false lo que significa que el evento se detonara en forma de burbuja de adentro para afuera 
+  y en caso que sea true se detonara en modo captura de afuera hacia el centro 
+  //div.addEventListener("click", flujoEventos, false);
+  //Fase de captura
+
+  //div.addEventListener("click", flujoEventos, true);
+  //el tercer parametro tambien puede ser un objeto y puede tener funciones extra  
+  div.addEventListener("click", flujoEventos, {
+    capture: false,
+    //esto es para que el evento solo se ejecute una vez
+    once: true,
+  });
+});
+
+/////////////////////////////////////////////////////////////
+STOP PROPAGACION Y PREVENTDEFAULT
+/////////////////////////////////////////////////////////////
+esto por ejemplo sirve caundo le agregas un evento a un link y al ejecutar esta sentencia no abrira el sitio indicado en el link 
+e.preventDefault()
+
+esto es para que se ejecute solo el evento de un elemento y no se propague en ningun sentido
+e.stopPropagation()  
+
+/////////////////////////////////////////////////////////////
+Delegacion de Eventos 
+/////////////////////////////////////////////////////////////
+Esto es utilizado para poner un evento a un elemnto padre así se va delegando el evento recorriendo todos los nodos hijos
+
+Lo que haremos es agregar un Listener o escuchador al DOM como tal y luego iremos detectando al elemento que deseamos que decencadena el evento
+
+
+function flujoEventos(e) {
+  console.log(
+    `Hola te saluda ${this} el click lo originó ${e.target.className}`
+  );
+  //e.stopPropagation();
+}
+
+document.addEventListener("click", (e) => {
+  
+  //matches es para buscar un selector valido
+  //este if dara true cuando se precion el elemento div que se encuentradentro de la clase .eventos-flujo div y esto detonara una funcion 
+  if (e.target.matches(".eventos-flujo div")) {
+    flujoEventos(e);
+  }
+  if (e.target.matches(".eventos-flujo a")) {
+    alert("Hola soy tu amigo y docente digital... Jonathan MirCha");
+    e.preventDefault();
+    //e.stopPropagation();
+  }
+}); */
+/*
+
+
 /////////////////////////////////////////////////////////////
